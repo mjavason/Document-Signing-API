@@ -14,34 +14,33 @@ export class SignerService {
 
   private loadKeys() {
     try {
-      // Read the private key from a file (replace with your private key)
+      // Load the private key from a file (replace with your private key file path)
       const privateKeyPem = fs.readFileSync('private_key.pem', 'utf8');
 
-      // Load the private key
+      // Initialize and load the private key
       this.privateKey = forge.pki.privateKeyFromPem(privateKeyPem);
 
       // Load the public key from the private key (for demonstration purposes)
       const publicKeyPem = forge.pki.publicKeyToPem(this.privateKey.publicKey);
 
-      // Load the public key
+      // Initialize and load the public key
       this.publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
     } catch (error) {
-      // throw new Error('Failed to load keys: ' + error.message);
       console.log('Failed to load keys:', error.message);
     }
   }
 
   async signDocument(documentToSign: any) {
     try {
-      // Compute the SHA-256 hash of the document
-      const md = forge.md.sha256.create();
-      md.update(documentToSign, 'utf8');
+      // Create a SHA-256 hash of the document
+      const sha256 = forge.md.sha256.create();
+      sha256.update(documentToSign, 'utf8');
 
-      // Sign the hash
-      const signature = this.privateKey.sign(md);
+      // Sign the hash with the private key
+      const digitalSignature = this.privateKey.sign(sha256);
 
-      console.log('Digital Signature:', forge.util.encode64(signature));
-      return forge.util.encode64(signature);
+      console.log('Digital Signature:', forge.util.encode64(digitalSignature));
+      return forge.util.encode64(digitalSignature);
     } catch (error) {
       console.log('Failed to sign document', error.message);
       // throw new Error('Failed to sign document: ' + error.message);
@@ -50,16 +49,16 @@ export class SignerService {
 
   async verifyDocument(documentToVerify: any, signature: string) {
     // Verify the signature
-    const md = forge.md.sha256.create();
-    md.update(documentToVerify, 'utf8');
+    const sha256 = forge.md.sha256.create();
+    sha256.update(documentToVerify, 'utf8');
 
     const signatureBytes = forge.util.decode64(signature);
-    const verified = this.publicKey.verify(
-      md.digest().getBytes(),
+    const isSignatureValid = this.publicKey.verify(
+      sha256.digest().getBytes(),
       signatureBytes,
     );
 
-    if (verified) {
+    if (isSignatureValid) {
       console.log(
         'Signature Verified: The document has not been tampered with.',
       );
