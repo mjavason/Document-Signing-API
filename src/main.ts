@@ -46,8 +46,6 @@ async function bootstrap() {
       'An API that allows users to sign digital documents using digital signatures. Users can submit documents for signing along with their digital signatures and retrieve signed documents.',
     )
     .setVersion('1.0')
-    .addTag('Sign')
-    .addTag('Verify')
     // Add more tags as needed to categorize endpoints
     .build();
 
