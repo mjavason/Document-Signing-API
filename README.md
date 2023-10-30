@@ -4,6 +4,8 @@
 
 The Document Signer API is a TypeScript and NestJS-based web service that securely signs digital documents with digital signatures. It ensures document integrity and authenticity with ease. Users can sign legal documents, contracts, certificates, and more electronically while also verifying the authenticity of signed documents.
 
+The live version of the API is hosted at [Document Signer Live Version](https://document-signer.onrender.com).
+
 ## Installation
 
 To get started, install the project dependencies using npm:
@@ -27,6 +29,14 @@ $ npm run start:dev
 ```bash
 $ npm run start:prod
 ```
+
+## Documentation
+
+For detailed documentation on how to use the Document Signer API and its endpoints, you can access the Swagger documentation at:
+
+[Swagger Documentation](https://document-signer.onrender.com/docs)
+
+The Swagger documentation provides information on available endpoints, request parameters, and response structures, making it easier to interact with the API.
 
 ## Usage
 
