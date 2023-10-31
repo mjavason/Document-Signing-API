@@ -39,7 +39,7 @@ For detailed documentation on how to use the Document Signer API and its endpoin
 The Swagger documentation provides information on available endpoints, request parameters, and response structures, making it easier to interact with the API.
 
 ## Generating RSA Keys with OpenSSL on Windows
-The private key serves as a confidential cryptographic key used to create digital signatures for documents, while the public key is openly shared and employed to verify these digital signatures, ensuring the authenticity and integrity of signed documents in your Document Signer API.
+The private key serves as a confidential cryptographic key used to create digital signatures for documents, while the public key is openly shared and employed to verify these digital signatures, ensuring the authenticity and integrity of signed documents in the API.
 
 If you need to generate RSA keys for signing and verifying documents, you can use OpenSSL. Here are the steps for installing and using OpenSSL on Windows:
 
