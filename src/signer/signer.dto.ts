@@ -17,13 +17,6 @@ export class SignAndVerifyDto {
   })
   file: string;
 
-  @ApiProperty({
-    type: 'string',
-    format: 'binary',
-    description: 'The file to sign/verify',
-  })
-  file2: string;
-
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
