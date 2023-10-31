@@ -20,11 +20,14 @@ export class SignerService {
       // Initialize and load the private key
       this.privateKey = forge.pki.privateKeyFromPem(privateKeyPem);
 
-      // Load the public key from the private key (for demonstration purposes)
-      const publicKeyPem = forge.pki.publicKeyToPem(this.privateKey.publicKey);
+      // Load the public key from a file (replace with your public key file path)
+      const publicKeyPem = fs.readFileSync('public_key.pem', 'utf8');
 
       // Initialize and load the public key
       this.publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
+
+      // Initialize and load the public key
+      this.publicKey = forge.pki.privateKeyFromPem(publicKeyPem);
     } catch (error) {
       console.log('Failed to load keys:', error.message);
       // throw error;
