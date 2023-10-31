@@ -111,36 +111,6 @@ To generate an RSA private key with OpenSSL:
 
 Now you have both private (`private_key.pem`) and public (`public_key.pem`) keys for use with your Document Signer API.
 
-## Usage
-
-### Signing a Document
-
-To sign a document, make a POST request to the `/sign` endpoint with the document content in the request body. This will return the digital signature in base64 format.
-
-```
-POST http://localhost:3000/sign
-Request Body: {
-  "document": "This is the document content"
-}
-Response: {
-  "digitalSignature": "base64_encoded_signature"
-}
-```
-
-### Verifying a Document
-
-To verify a document, make a POST request to the `/verify` endpoint with the document content and the digital signature in the request body. The API will return whether the document has been tampered with or not.
-
-```
-POST http://localhost:3000/verify
-Request Body: {
-  "document": "This is the document content",
-  "digitalSignature": "base64_encoded_signature"
-}
-Response: {
-  "isSignatureValid": true
-}
-```
 
 ## Contributing
 
