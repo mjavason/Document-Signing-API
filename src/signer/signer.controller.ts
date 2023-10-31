@@ -24,9 +24,9 @@ import {
 } from 'src/helpers/response.helper';
 import { ResponseDto } from 'src/dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import path from 'path';
-import * as fs from 'fs';
+// import { diskStorage } from 'multer';
+// import path from 'path';
+// import * as fs from 'fs';
 import { SignAndVerifyDto, VerifyDocumentDto } from './signer.dto';
 
 @Controller('signer')

@@ -27,6 +27,8 @@ export class SignerService {
       this.publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
     } catch (error) {
       console.log('Failed to load keys:', error.message);
+      // throw error;
+      return false;
     }
   }
 
@@ -48,25 +50,30 @@ export class SignerService {
   }
 
   async verifyDocument(documentToVerify: any, signature: string) {
-    // Verify the signature
-    const sha256 = forge.md.sha256.create();
-    sha256.update(documentToVerify, 'utf8');
+    try {
+      // Verify the signature
+      const sha256 = forge.md.sha256.create();
+      sha256.update(documentToVerify, 'utf8');
 
-    const signatureBytes = forge.util.decode64(signature);
-    const isSignatureValid = this.publicKey.verify(
-      sha256.digest().getBytes(),
-      signatureBytes,
-    );
+      const signatureBytes = forge.util.decode64(signature);
+      const isSignatureValid = this.publicKey.verify(
+        sha256.digest().getBytes(),
+        signatureBytes,
+      );
 
-    if (isSignatureValid) {
-      console.log(
-        'Signature Verified: The document has not been tampered with.',
-      );
-      return true;
-    } else {
-      console.log(
-        'Signature Verification Failed: The document may have been tampered with.',
-      );
+      if (isSignatureValid) {
+        console.log(
+          'Signature Verified: The document has not been tampered with.',
+        );
+        return true;
+      } else {
+        console.log(
+          'Signature Verification Failed: The document may have been tampered with.',
+        );
+        return false;
+      }
+    } catch (e) {
+      console.log(e.message);
       return false;
     }
   }
