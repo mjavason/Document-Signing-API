@@ -25,11 +25,8 @@ export class SignerService {
 
       // Initialize and load the public key
       this.publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
-
-      // Initialize and load the public key
-      this.publicKey = forge.pki.privateKeyFromPem(publicKeyPem);
     } catch (error) {
-      console.log('Failed to load keys:', error.message);
+      console.log(error.message);
       // throw error;
       return false;
     }
